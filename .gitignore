@@ -1,0 +1,57 @@
+# Gradle
+.gradle/
+build/
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# NetBeans
+nbproject/
+
+# VS Code
+.vscode/
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Sensitive configuration files
+application.properties
+application.yml
+*.key
+*.crt
+*.p12
+*.pem
+
+# JARs and WARs
+*.jar
+*.war
+
+# Dependency cache
+.gradle/
+build/
+
+# Local environment configurations (may be different for each developer)
+.env
+
+# Test output
+test-logs/
+
+# JetBrains Rider
+.idea/
+
+# Gradle Wrapper
+gradle-wrapper.jar
+gradle-wrapper.properties
