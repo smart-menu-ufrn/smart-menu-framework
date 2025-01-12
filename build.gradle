@@ -29,6 +29,20 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+bootRun {
+    if (project.hasProperty('mainClass')) {
+        mainClass.set(project.mainClass)
+    } else {
+        throw new GradleException("Please specify the main class to run using '-PmainClass=<main-class>'")
+    }
+
+	if (project.hasProperty('profile')) {
+        systemProperty 'spring.profiles.active', project.profile
+	} else {
+		throw new GradleException("Please specify the active profile using '-Pprofile=<profile-name>'")
+	}
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
 }

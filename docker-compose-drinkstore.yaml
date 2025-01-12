@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  drinkstore-db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: drinkstore
+      POSTGRES_USER: drinkstore
+      POSTGRES_PASSWORD: drinkstore
+    ports:
+      - "5434:5432"
+    volumes:
+      - drinkstore-db-data:/var/lib/postgresql/data
+
+volumes:
+  drinkstore-db-data:
