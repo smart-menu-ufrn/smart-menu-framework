@@ -16,7 +16,7 @@ public class CategoryService {
     private CategoryRepository repository;
 
     public List<Category> getAllCategories() {
-        List<Category> allCategories = repository.findAll();
+        List<Category> allCategories = this.repository.findAll();
 
         return allCategories;
     }
@@ -24,7 +24,7 @@ public class CategoryService {
     public Category getCategoryById(
         Long id
     ) throws NoSuchElementException {
-        Category category = repository.findById(id).get();
+        Category category = this.repository.findById(id).get();
         
         return category;
     }
@@ -33,7 +33,7 @@ public class CategoryService {
         Category category
     ) {
 
-        category = repository.save(category);
+        category = this.repository.save(category);
         
         return category;
     }
@@ -42,11 +42,11 @@ public class CategoryService {
         Long id,
         Category updatedCategory
     ) throws NoSuchElementException {
-        Category category = repository.findById(id).get();
+        Category category = this.repository.findById(id).get();
 
         category.setName(updatedCategory.getName());
 
-        category = repository.save(category);
+        category = this.repository.save(category);
 
         return category;
     }
@@ -54,9 +54,9 @@ public class CategoryService {
     public void deleteCategory(
         Long id
     ) throws NoSuchElementException {
-        Category category = repository.findById(id).get();
+        Category category = this.repository.findById(id).get();
         
-        repository.delete(category);
+        this.repository.delete(category);
     }
 
 }

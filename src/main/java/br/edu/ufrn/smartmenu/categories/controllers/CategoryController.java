@@ -28,16 +28,16 @@ public class CategoryController {
 
     @GetMapping
     public ResponseEntity<List<Category>> getAllCategories() {
-        List<Category> responseDTOList = service.getAllCategories();
+        List<Category> categoryList = this.service.getAllCategories();
 
-        return ResponseEntity.status(HttpStatus.OK).body(responseDTOList);
+        return ResponseEntity.status(HttpStatus.OK).body(categoryList);
     }
 
     @PostMapping
     public ResponseEntity<Category> createCategory(
         @RequestBody Category category
     ) {
-        category = service.createCategory(category);
+        category = this.service.createCategory(category);
 
         URI location = URI.create("/items/categories/" + category.getId());
 
@@ -49,7 +49,7 @@ public class CategoryController {
         @PathVariable Long id
     ) {
         try {
-            Category category = service.getCategoryById(id);
+            Category category = this.service.getCategoryById(id);
 
             return ResponseEntity.status(HttpStatus.OK).body(category);
         } catch (NoSuchElementException e) {
@@ -63,7 +63,7 @@ public class CategoryController {
         @RequestBody Category category
     ) {
         try {
-            category = service.updateCategory(id, category);
+            category = this.service.updateCategory(id, category);
 
             return ResponseEntity.status(HttpStatus.ACCEPTED).body(category);
         } catch (NoSuchElementException e) {
@@ -74,7 +74,7 @@ public class CategoryController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCategory(@PathVariable Long id) {
         try {
-            service.deleteCategory(id);
+            this.service.deleteCategory(id);
             
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         } catch (NoSuchElementException e) {
