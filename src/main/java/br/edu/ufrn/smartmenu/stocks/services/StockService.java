@@ -18,6 +18,8 @@ public abstract class StockService<
     @Autowired
     protected R repository;
 
+    public abstract void alertIfLowStock(T stock);
+
     public List<T> getAllStocks() {
         List<T> allStocks = this.repository.findAll();
 
@@ -47,6 +49,8 @@ public abstract class StockService<
         stock.decrease(value);
 
         this.repository.save(stock);
+
+        this.alertIfLowStock(stock);
     }
 
 }
