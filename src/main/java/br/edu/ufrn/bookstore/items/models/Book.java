@@ -44,7 +44,15 @@ public class Book extends Item {
 
     @Override
     public Double getDiscount() {
-        return Double.valueOf(0.0);
+        Double discount;
+
+        if (this.year >= 2021) {
+            discount = this.getPrice() * Double.valueOf(0.05);
+        } else {
+            discount = Double.valueOf(0.0);
+        }
+
+        return discount;
     }
 
 }

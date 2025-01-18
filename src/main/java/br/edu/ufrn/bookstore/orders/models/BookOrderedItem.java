@@ -11,7 +11,15 @@ public class BookOrderedItem extends OrderedItem<Book> {
 
     @Override
     public Double getDiscount() {
-        return Double.valueOf(0.0);
+        Double discount;
+
+        if (this.getQuantity() >= 5) {
+            discount = this.getPrice() * Double.valueOf(0.05);
+        } else {
+            discount = Double.valueOf(0.0);
+        }
+        
+        return discount;
     }
     
 }
