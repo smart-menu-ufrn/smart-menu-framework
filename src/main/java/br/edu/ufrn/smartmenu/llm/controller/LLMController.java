@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import br.edu.ufrn.smartmenu.llm.exceptions.EmptyLLMResponse;
@@ -26,12 +27,12 @@ public class LLMController {
     @GetMapping("/prompt")
     public ResponseEntity<String> reorderItems() {
         try {
-            String response = this.llmService.processPrompt(prompt);
-            return ResponseEntity.status(HttpStatus.OK).body(response);
+            PromptResponse response = this.llmService.processPrompt();
+            return ResponseEntity.status(HttpStatus.OK).body(response.getResponse());
         } catch (PromptException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         } catch (EmptyLLMResponse e) {
             return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).build();
         }
-    }    
+    }
 }
